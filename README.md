@@ -1,5 +1,19 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## 構成
+- src/lib/db.ts — pg.Pool（.env の PGHOST/PGPORT/PGUSER/PGPASSWORD/PGDATABASE を使用、Next.js が自動読込）
+- src/app/api/todos/route.ts — 一覧取得(GET) / 作成(POST)
+- src/app/api/todos/[id]/route.ts — 1件取得(GET) / 更新(PUT) / 削除(DELETE)
+- src/app/page.tsx — 追加・完了トグル・編集・削除ができるUI（Tailwind）
+- db/schema.sql — todos テーブルDDL
+- .env / .env.example — 接続情報（.gitignore で除外済み）
+- npm run db:init — .env を読み込んで psql でスキーマ適用
+
+## 動作確認
+- npm run build 成功（型エラーなし）
+- ローカルDB next_crud_example を作成し npm run db:init でテーブル作成
+- npm run dev を起動し、POST/GET/PUT(done)/PUT(title)/DELETE を curl で一通り実行
+
 ## Getting Started
 
 First, run the development server:
